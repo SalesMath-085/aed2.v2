@@ -67,7 +67,10 @@ void questao_1(int* vetor_de_1milhao){
 
 
     //  MOSTRA OS TEMPOS DE EXECUCAO E ESTATISTICAS //
-    printf("RODADAS    BUSCA BINARIA    BUSCA SEQUENCIAL\n");
+    printf("___________________________________________\n");
+    printf("################ QUESTAO 1 ################\n");
+    printf("\n");
+    printf("RODADAS    BUSCA SEQUENCIAL    BUSCA BINARIA\n");
 
 
     for(int i=0;i<quantidades_de_repeticoes;i++){

@@ -49,18 +49,13 @@ void questao_2(int*vetor_de_1milhao){
             x++;
         }
 
-    //tipoNo*aux=lista_de_1milhao.prim;
-    //for(int i=0;i<10;i++){
-    //    printf("%d \n",vetor_de_1milhao[i]);
-   //    printf("%d \n", aux->dados);
-    //    aux=aux->prox;
-    
-    //}
     printf("___________________________________________\n");
     printf("################ QUESTAO 2 ################\n");
     printf("\n");
+    printf("RODADAS    BUSCA SEQUENCIAL NO VETOR    BUSCA SEQUENCIAL NA LISTA\n");
     for(int i=0;i<30;i++){
-        printf("%.8lf     ",tempo_da_busca_vetor[i]);
+        printf("RODADA %i    ",i);
+        printf("%.8lf                    ",tempo_da_busca_vetor[i]);
         printf("%.8lf ", tempo_da_busca_lista[i]);
         printf("\n");
         
