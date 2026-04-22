@@ -4,10 +4,11 @@
 #include "time.h"
 
 int main(){
-    double tempo_da_busca_sequencial[20], tempo_da_busca_binaria[20];
+    double time_seq_ch_certeza[10],time_seq_ch_talvez[10], time_bin_ch_certeza[10], time_bin_ch_talvez[10];
+    double time_seq_ch_certeza_2[10], time_seq_ch_talvez_lista[10];
     int chave;
     int tamanho=100000;
-    int i=0,ind1=0,ind2=1;
+    int i=0,ind1=0;
     struct timespec start, end;
     for(i=1;i<=10;i++){
         tamanho=100000*i;
@@ -17,7 +18,7 @@ int main(){
             busca_sequencial(vetorprincipal,tamanho,chave);
             timespec_get(&end, TIME_UTC); //finaliza o timer//
 
-            tempo_da_busca_sequencial[ind1]=calcular_diferenca(start,end);
+            time_seq_ch_certeza[ind1]=calcular_diferenca(start,end);
 
        
         chave=rand()+tamanho;
@@ -26,36 +27,66 @@ int main(){
             busca_sequencial(vetorprincipal,tamanho,chave);
             timespec_get(&end, TIME_UTC); //finaliza o timer//
 
-            tempo_da_busca_sequencial[ind2]=calcular_diferenca(start,end);
+            time_seq_ch_talvez[ind1]=calcular_diferenca(start,end);
 
 
-        int*vetorordenado = cria_vetor_ordenado(i*100000);
-        tipoLista listaordenada;
-        criarLista(&listaordenada);
-        insereNaLista(&listaordenada,vetorordenado,tamanho);
+        int*vetorordenado = cria_vetor_ordenado(tamanho);
+
         chave=vetorordenado[rand()%tamanho];
+            timespec_get(&start, TIME_UTC); //incia o timer//
+            busca_binaria(vetorordenado,tamanho,chave);
+            timespec_get(&end, TIME_UTC); //finaliza o timer//
+
+            //double tempo_gasto = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+
+            time_bin_ch_certeza[ind1]=calcular_diferenca(start,end);
+
+        chave=rand()+tamanho;
+
+            timespec_get(&start, TIME_UTC); //incia o timer//
+            busca_binaria(vetorordenado,tamanho,chave);
+            timespec_get(&end, TIME_UTC); //finaliza o timer//
+            
+            //double tempo_gasto = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+
+            time_bin_ch_talvez[ind1]=calcular_diferenca(start,end);
+
+        tipoLista listaprincipal;
+        criarLista(&listaprincipal);
+        insereNaLista(&listaprincipal,vetorprincipal,tamanho);
+        chave=vetorprincipal[rand()%tamanho];
 
             timespec_get(&start, TIME_UTC); //incia o timer//
             busca_binaria(vetorordenado,tamanho,chave);
             timespec_get(&end, TIME_UTC); //finaliza o timer//
 
-        tempo_da_busca_binaria[ind1]=calcular_diferenca(start,end);
+        time_seq_ch_certeza_2[ind1]=calcular_diferenca(start,end);
 
             timespec_get(&start, TIME_UTC); //incia o timer//
-            buscaSequencial(&listaordenada,chave);
+            buscaSequencial(&listaprincipal,chave);
             timespec_get(&end, TIME_UTC); //finaliza o timer//
 
-        tempo_da_busca_binaria[ind2]=calcular_diferenca(start,end);
-        ind1=ind1+2;
-        ind2=ind2+2;
+        time_seq_ch_talvez_lista[ind1]=calcular_diferenca(start,end);
+        ind1++;
 
     }
 
-    for(int i=0;i<20;i=i+2){
-        printf("%.8f",tempo_da_busca_sequencial[i]);
-        printf("    %.8f\n",tempo_da_busca_binaria[i+1]);
+    for(int i=0;i<10;i++){
+        printf("%.8f",time_seq_ch_certeza[i]);
+        printf("    %.8f",time_seq_ch_talvez[i]);
+        printf("    %.8f",time_bin_ch_certeza[i]);
+        printf("    %.8f",time_bin_ch_talvez[i]);
+        printf("    %.8f",time_seq_ch_certeza_2[i]);
+        printf("    %.8f\n",time_seq_ch_talvez_lista[i]);
     }
-    int n=20;
-    calcula_estatistica(tempo_da_busca_sequencial,n,"busca sequencial");
-    calcula_estatistica(tempo_da_busca_binaria,n,"busca binaria");
+   
+    int n=10;
+
+    calcula_estatistica(time_seq_ch_certeza,n,"busca sequencial no vetor, com chave no vetor");
+    calcula_estatistica(time_seq_ch_talvez,n,"busca sequencial no vetor, chave pode nao existir");
+    calcula_estatistica(time_bin_ch_certeza,n,"busca binaria no vetor, chave dentro do vetor");
+    calcula_estatistica(time_bin_ch_talvez,n,"busca binaria vetor, chave pode nao exisitr");
+    calcula_estatistica(time_seq_ch_certeza_2,n,"busca binaria na lista, com chave no vetor");
+    calcula_estatistica(time_seq_ch_talvez_lista,n,"busca binaria na lista, chave pode nao existir");
+    
 }
