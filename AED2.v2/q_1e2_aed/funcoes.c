@@ -21,6 +21,7 @@ void insereNaLista(tipoLista* lista, int vetor[], int tam){
     for (i = 1; i < tam; i++){
     aux = (tipoNo*)malloc(sizeof(tipoNo));
     aux-> dados = vetor[i];
+    aux->prox = NULL;
     lista->ult->prox = aux;
     lista->ult = aux;;
     }
