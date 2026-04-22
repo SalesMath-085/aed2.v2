@@ -79,7 +79,7 @@ int* cria_vetor(int tam){
 }
 
 int* cria_vetor_ordenado(int tam){
-    int atual,aleatorio;
+    int atual=0,aleatorio;
     int *vet=(int*)malloc(tam*sizeof(int));
     srand(time(NULL));
     for(int i=0;i<tam;i++){

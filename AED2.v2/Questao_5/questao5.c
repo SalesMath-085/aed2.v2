@@ -1,4 +1,4 @@
-#include "../q_1e2_aed/programa.h"
+#include "../Questao_1e2/programa.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "time.h"
