@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "arq.h"
+#include "../tads/arq.h"
 
 void trocar(int* a, int* b) {
     int t = *a;

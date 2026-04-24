@@ -1,4 +1,4 @@
-#include "programa.h"
+#include "../tads/programa.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

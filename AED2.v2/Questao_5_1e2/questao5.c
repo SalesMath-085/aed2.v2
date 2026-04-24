@@ -1,5 +1,5 @@
 #include "programa.h"
-#include "../Questao_3/arq.h"
+#include "../tads/arq.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "time.h"

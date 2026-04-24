@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "programa.h"
+#include "../tads/programa.h"
 #include <time.h>
 #include <math.h>
 

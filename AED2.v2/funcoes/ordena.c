@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 #include <math.h>
-#include "arq.h"
+#include "../tads/arq.h"
 
 void exibir_resultados(int rodadas, double tempos[5][RODADAS], double somas[5]) {
     printf("\n  resultado por tecnica \n");
